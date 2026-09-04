@@ -1,11 +1,17 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import projectsData from "@/data/projects.json";
 
+export const metadata: Metadata = {
+  title: "KOHO Visual — Architectural Visualization Studio",
+  description:
+    "High-end CGI renders and animations for developers and architects worldwide.",
+};
+
 export default function Home() {
   return (
     <>
-      {/* Hero */}
       <section
         style={{
           paddingTop: "clamp(7rem, 14vw, 11rem)",
@@ -54,7 +60,6 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Portfolio grid */}
       <section
         aria-label="Portfolio"
         style={{
@@ -136,51 +141,20 @@ function ProjectCard({
     <Link
       href={`/work/${project.id}`}
       aria-label={`View project: ${project.title}`}
-      style={{
-        display: "block",
-        position: "relative",
-        borderRadius: "8px",
-        overflow: "hidden",
-        background: "oklch(16% 0.006 270)",
-        border: "1px solid oklch(24% 0.008 270)",
-        textDecoration: "none",
-        // CSS custom property trick for hover — use a wrapper div instead
-      }}
       className="project-card"
     >
-      {/* Image */}
-      <div
-        style={{
-          position: "relative",
-          aspectRatio: "4 / 3",
-          overflow: "hidden",
-          background: "oklch(20% 0.006 270)",
-        }}
-      >
+      <div className="card-img-wrap">
         <Image
           src={project.cover}
           alt={project.title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          style={{ objectFit: "cover", transition: "transform 400ms ease" }}
-          priority={priority}
           className="card-img"
+          priority={priority}
         />
-        {/* Gradient overlay on hover */}
-        <div
-          className="card-overlay"
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to top, rgba(17,17,19,0.85) 0%, rgba(17,17,19,0) 55%)",
-            opacity: 0,
-            transition: "opacity 300ms ease",
-          }}
-        />
+        <div className="card-overlay" aria-hidden="true" />
       </div>
 
-      {/* Meta */}
       <div
         style={{
           padding: "1rem 1.25rem 1.25rem",
@@ -229,6 +203,32 @@ function ProjectCard({
       </div>
 
       <style>{`
+        .project-card {
+          display: block;
+          position: relative;
+          border-radius: 8px;
+          overflow: hidden;
+          background: oklch(16% 0.006 270);
+          border: 1px solid oklch(24% 0.008 270);
+          text-decoration: none;
+        }
+        .card-img-wrap {
+          position: relative;
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
+          background: oklch(20% 0.006 270);
+        }
+        .card-img {
+          object-fit: cover;
+          transition: transform 400ms ease;
+        }
+        .card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(17,17,19,0.85) 0%, rgba(17,17,19,0) 55%);
+          opacity: 0;
+          transition: opacity 300ms ease;
+        }
         .project-card:hover .card-img {
           transform: scale(1.04);
         }
@@ -236,10 +236,7 @@ function ProjectCard({
           opacity: 1;
         }
         @media (prefers-reduced-motion: reduce) {
-          .project-card .card-img,
-          .project-card .card-overlay {
-            transition: none !important;
-          }
+          .card-img, .card-overlay { transition: none !important; }
         }
       `}</style>
     </Link>
