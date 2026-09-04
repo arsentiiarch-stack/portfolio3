@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/Header";
 import projectsData from "@/data/projects.json";
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <Header />
       <section
         style={{
           paddingTop: "clamp(7rem, 14vw, 11rem)",
@@ -23,7 +25,7 @@ export default function Home() {
       >
         <h1
           style={{
-            fontFamily: "var(--font-syne)",
+            fontFamily: '"Roboto", sans-serif',
             fontWeight: 700,
             fontSize: "clamp(2rem, 5vw, 3.5rem)",
             lineHeight: 1.1,

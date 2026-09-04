@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Syne } from "next/font/google";
+import { Inter, Syne, Roboto, Montserrat, Lato, Libre_Franklin } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const inter = Inter({
@@ -13,6 +12,34 @@ const inter = Inter({
 const syne = Syne({
   subsets: ["latin"],
   variable: "--font-syne",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-lato",
+  display: "swap",
+});
+
+const libreF = Libre_Franklin({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-libre-franklin",
   display: "swap",
 });
 
@@ -68,9 +95,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${syne.variable}`}>
+    <html lang="en" className={`${inter.variable} ${syne.variable} ${roboto.variable} ${montserrat.variable} ${lato.variable} ${libreF.variable}`}>
       <body>
-        <Header />
         <main>{children}</main>
         <Footer />
       </body>

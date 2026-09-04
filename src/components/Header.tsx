@@ -76,15 +76,18 @@ export default function Header() {
         </span>
         <span
           style={{
-            fontFamily: "var(--font-syne)",
+            fontFamily: '"Montserrat", sans-serif',
             fontWeight: 600,
             fontSize: "0.9375rem",
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             color: "oklch(97% 0.004 270)",
+            lineHeight: 1.2,
           }}
         >
           KOHO
+          <br />
+          visual
         </span>
       </Link>
 
