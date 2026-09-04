@@ -7,9 +7,6 @@ export const metadata: Metadata = {
     "Get in touch with KOHO Visual to discuss your architectural visualization project.",
 };
 
-// ─── Contact configuration ────────────────────────────────────────────────────
-// Add or remove entries here to show / hide contact methods.
-// To enable phone later, uncomment the phone block below.
 const contacts = [
   {
     label: "Email",
@@ -29,15 +26,7 @@ const contacts = [
     href: "https://www.behance.net/kohovisual",
     external: true,
   },
-  // Phone — uncomment when ready:
-  // {
-  //   label: "Phone",
-  //   value: "+1 000 000 0000",
-  //   href: "tel:+10000000000",
-  //   external: false,
-  // },
 ];
-// ─────────────────────────────────────────────────────────────────────────────
 
 export default function ContactPage() {
   return (
@@ -50,7 +39,6 @@ export default function ContactPage() {
         margin: "0 auto",
       }}
     >
-      {/* Heading */}
       <h1
         style={{
           fontFamily: "var(--font-syne)",
@@ -78,7 +66,6 @@ export default function ContactPage() {
         </span>
       </h1>
 
-      {/* Contact list */}
       <ul
         role="list"
         style={{
@@ -94,8 +81,7 @@ export default function ContactPage() {
           <li
             key={label}
             style={{
-              borderTop:
-                i === 0 ? "1px solid oklch(24% 0.008 270)" : undefined,
+              borderTop: i === 0 ? "1px solid oklch(24% 0.008 270)" : undefined,
               borderBottom: "1px solid oklch(24% 0.008 270)",
             }}
           >
@@ -105,54 +91,16 @@ export default function ContactPage() {
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
               className="contact-link"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "1rem",
-                padding: "1.5rem 0",
-                textDecoration: "none",
-                transition: "opacity 180ms ease",
-              }}
               aria-label={`${label}: ${value}`}
             >
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: "oklch(48% 0.008 270)",
-                  minWidth: "6rem",
-                }}
-              >
-                {label}
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-syne)",
-                  fontWeight: 500,
-                  fontSize: "clamp(1rem, 2vw, 1.375rem)",
-                  color: "oklch(97% 0.004 270)",
-                  flex: 1,
-                }}
-              >
-                {value}
-              </span>
-              <span
-                aria-hidden="true"
-                style={{
-                  fontSize: "1.125rem",
-                  color: "oklch(48% 0.008 270)",
-                }}
-              >
-                ↗
-              </span>
+              <span className="contact-label">{label}</span>
+              <span className="contact-value">{value}</span>
+              <span aria-hidden="true" className="contact-arrow">↗</span>
             </Link>
           </li>
         ))}
       </ul>
 
-      {/* Note */}
       <p
         style={{
           marginTop: "clamp(2.5rem, 5vw, 4rem)",
@@ -167,9 +115,37 @@ export default function ContactPage() {
         vision.
       </p>
 
-      <style jsx>{`
+      <style>{`
+        .contact-link {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          padding: 1.5rem 0;
+          text-decoration: none;
+          opacity: 1;
+          transition: opacity 180ms ease;
+        }
         .contact-link:hover {
           opacity: 0.6;
+        }
+        .contact-label {
+          font-size: 0.75rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: oklch(48% 0.008 270);
+          min-width: 6rem;
+        }
+        .contact-value {
+          font-family: var(--font-syne);
+          font-weight: 500;
+          font-size: clamp(1rem, 2vw, 1.375rem);
+          color: oklch(97% 0.004 270);
+          flex: 1;
+        }
+        .contact-arrow {
+          font-size: 1.125rem;
+          color: oklch(48% 0.008 270);
         }
       `}</style>
     </main>
