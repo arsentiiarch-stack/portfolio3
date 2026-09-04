@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import projectsData from "@/data/projects.json";
 
@@ -16,11 +16,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: project.title,
     description: project.description,
-    openGraph: {
-      title: `${project.title} | KOHO Visual`,
-      description: project.description,
-      images: [{ url: project.cover, width: 1200, height: 800 }],
-    },
   };
 }
 
@@ -28,9 +23,13 @@ export default function ProjectPage({ params }: Props) {
   const project = projectsData.find((p) => p.id === params.id);
   if (!project) notFound();
 
+  const idx = projectsData.findIndex((p) => p.id === params.id);
+  const next = projectsData.length > 1
+    ? projectsData[(idx + 1) % projectsData.length]
+    : null;
+
   return (
     <article style={{ paddingTop: "6rem" }}>
-      {/* Back link */}
       <div
         style={{
           paddingInline: "clamp(1.25rem, 5vw, 3rem)",
@@ -39,33 +38,11 @@ export default function ProjectPage({ params }: Props) {
           margin: "0 auto",
         }}
       >
-        <Link
-          href="/"
-          className="back-link"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.4rem",
-            fontSize: "0.8125rem",
-            letterSpacing: "0.07em",
-            textTransform: "uppercase",
-            color: "oklch(48% 0.008 270)",
-            textDecoration: "none",
-            transition: "color 180ms ease",
-          }}
-          aria-label="Back to all projects"
-        >
+        <Link href="/" className="back-link">
           ← All work
         </Link>
       </div>
 
-      <style jsx>{`
-        .back-link:hover {
-          color: oklch(97% 0.004 270);
-        }
-      `}</style>
-
-      {/* Header */}
       <header
         style={{
           paddingInline: "clamp(1.25rem, 5vw, 3rem)",
@@ -116,7 +93,6 @@ export default function ProjectPage({ params }: Props) {
         </p>
       </header>
 
-      {/* Cover image */}
       <div
         style={{
           position: "relative",
@@ -136,13 +112,13 @@ export default function ProjectPage({ params }: Props) {
         />
       </div>
 
-      {/* Gallery grid */}
       {project.images.length > 0 && (
         <section
           aria-label="Project gallery"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 28rem), 1fr))",
+            gridTemplateColumns:
+              "repeat(auto-fill, minmax(min(100%, 28rem), 1fr))",
             gap: "clamp(0.75rem, 1.5vw, 1.25rem)",
             paddingInline: "clamp(0.75rem, 1.5vw, 1.25rem)",
             paddingBottom: "clamp(4rem, 8vw, 7rem)",
@@ -171,56 +147,60 @@ export default function ProjectPage({ params }: Props) {
         </section>
       )}
 
-      {/* Next project nav */}
-      <NextProjectNav currentId={project.id} />
-    </article>
-  );
-}
+      {next && (
+        <div
+          style={{
+            borderTop: "1px solid oklch(24% 0.008 270)",
+            padding: "clamp(2rem, 4vw, 3rem) clamp(1.25rem, 5vw, 3rem)",
+            maxWidth: "72rem",
+            margin: "0 auto",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "0.75rem",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "oklch(40% 0.008 270)",
+              marginBottom: "0.5rem",
+            }}
+          >
+            Next project
+          </p>
+          <Link href={`/work/${next.id}`} className="next-project-link">
+            {next.title} →
+          </Link>
+        </div>
+      )}
 
-function NextProjectNav({ currentId }: { currentId: string }) {
-  const idx = projectsData.findIndex((p) => p.id === currentId);
-  const next = projectsData[(idx + 1) % projectsData.length];
-
-  return (
-    <div
-      style={{
-        borderTop: "1px solid oklch(24% 0.008 270)",
-        padding: "clamp(2rem, 4vw, 3rem) clamp(1.25rem, 5vw, 3rem)",
-        maxWidth: "72rem",
-        margin: "0 auto",
-      }}
-    >
-      <p
-        style={{
-          fontSize: "0.75rem",
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          color: "oklch(40% 0.008 270)",
-          marginBottom: "0.5rem",
-        }}
-      >
-        Next project
-      </p>
-      <Link
-        href={`/work/${next.id}`}
-        className="next-link"
-        style={{
-          fontFamily: "var(--font-syne)",
-          fontWeight: 600,
-          fontSize: "clamp(1.25rem, 3vw, 2rem)",
-          color: "oklch(97% 0.004 270)",
-          textDecoration: "none",
-          transition: "opacity 180ms ease",
-          display: "inline-block",
-        }}
-      >
-        {next.title} →
-      </Link>
-      <style jsx>{`
-        .next-link:hover {
+      <style>{`
+        .back-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.8125rem;
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+          color: oklch(48% 0.008 270);
+          text-decoration: none;
+          transition: color 180ms ease;
+        }
+        .back-link:hover {
+          color: oklch(97% 0.004 270);
+        }
+        .next-project-link {
+          font-family: var(--font-syne);
+          font-weight: 600;
+          font-size: clamp(1.25rem, 3vw, 2rem);
+          color: oklch(97% 0.004 270);
+          text-decoration: none;
+          transition: opacity 180ms ease;
+          display: inline-block;
+        }
+        .next-project-link:hover {
           opacity: 0.6;
         }
       `}</style>
-    </div>
+    </article>
   );
 }

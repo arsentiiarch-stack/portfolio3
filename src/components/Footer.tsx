@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 
-// Contact links — add/remove items here to show or hide them in the footer.
-// To add a phone number later, uncomment the phone entry below.
 const contactLinks = [
   {
     label: "Instagram",
@@ -20,12 +18,6 @@ const contactLinks = [
     href: "mailto:hello@koho.visual",
     external: false,
   },
-  // Phone — uncomment when ready:
-  // {
-  //   label: "Phone",
-  //   href: "tel:+10000000000",
-  //   external: false,
-  // },
 ];
 
 export default function Footer() {
@@ -43,7 +35,6 @@ export default function Footer() {
         gap: "1.5rem",
       }}
     >
-      {/* Brand */}
       <span
         style={{
           fontFamily: "var(--font-syne)",
@@ -57,7 +48,6 @@ export default function Footer() {
         © {year} KOHO Visual
       </span>
 
-      {/* Contact links */}
       <nav aria-label="Contact and social links">
         <ul
           style={{
@@ -76,22 +66,7 @@ export default function Footer() {
                 {...(external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: "0.8125rem",
-                  letterSpacing: "0.06em",
-                  color: "oklch(58% 0.008 270)",
-                  textDecoration: "none",
-                  transition: "color 180ms cubic-bezier(0.4,0,0.2,1)",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color =
-                    "oklch(97% 0.004 270)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color =
-                    "oklch(58% 0.008 270)")
-                }
+                className="footer-link"
               >
                 {label}
               </Link>
@@ -99,6 +74,19 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
+
+      <style>{`
+        .footer-link {
+          font-size: 0.8125rem;
+          letter-spacing: 0.06em;
+          color: oklch(58% 0.008 270);
+          text-decoration: none;
+          transition: color 180ms ease;
+        }
+        .footer-link:hover {
+          color: oklch(97% 0.004 270);
+        }
+      `}</style>
     </footer>
   );
 }
