@@ -104,6 +104,7 @@ export default function ContactPage() {
               {...(external
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
+              className="contact-link"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -113,12 +114,6 @@ export default function ContactPage() {
                 textDecoration: "none",
                 transition: "opacity 180ms ease",
               }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.6")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-              }
               aria-label={`${label}: ${value}`}
             >
               <span
@@ -171,6 +166,12 @@ export default function ContactPage() {
         feel free to share reference images or a brief description of your
         vision.
       </p>
+
+      <style jsx>{`
+        .contact-link:hover {
+          opacity: 0.6;
+        }
+      `}</style>
     </main>
   );
 }

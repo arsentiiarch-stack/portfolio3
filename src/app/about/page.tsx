@@ -166,6 +166,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/contact"
+          className="cta-link"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -178,15 +179,14 @@ export default function AboutPage() {
             textDecoration: "none",
             transition: "opacity 180ms ease",
           }}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.6")
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-          }
         >
           Get in touch →
         </Link>
+        <style jsx>{`
+          .cta-link:hover {
+            opacity: 0.6;
+          }
+        `}</style>
       </div>
     </main>
   );

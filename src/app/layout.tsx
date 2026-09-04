@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       "High-end architectural visualization: CGI renders, animations, and immersive visuals.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "KOHO Visual",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "KOHO Visual — Architectural Visualization Studio",
     description:
       "High-end architectural visualization: CGI renders, animations, and immersive visuals.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.svg"],
   },
   robots: {
     index: true,

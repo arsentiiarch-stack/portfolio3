@@ -62,19 +62,62 @@ export default function Home() {
           paddingBottom: "clamp(4rem, 8vw, 7rem)",
           maxWidth: "72rem",
           margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fill, minmax(min(100%, 22rem), 1fr))",
-          gap: "clamp(1rem, 2vw, 1.5rem)",
         }}
       >
-        {projectsData.map((project, index) => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            priority={index < 2}
-          />
-        ))}
+        {projectsData.length === 0 ? (
+          <div
+            style={{
+              textAlign: "center",
+              padding: "4rem 2rem",
+              color: "oklch(48% 0.008 270)",
+            }}
+          >
+            <p style={{ fontSize: "0.9375rem", marginBottom: "1rem" }}>
+              No projects yet. Add your first project by editing{" "}
+              <code
+                style={{
+                  background: "oklch(16% 0.006 270)",
+                  padding: "0.2rem 0.5rem",
+                  borderRadius: "4px",
+                  fontFamily: "monospace",
+                }}
+              >
+                src/data/projects.json
+              </code>
+            </p>
+            <p style={{ fontSize: "0.875rem" }}>
+              See{" "}
+              <code
+                style={{
+                  background: "oklch(16% 0.006 270)",
+                  padding: "0.2rem 0.5rem",
+                  borderRadius: "4px",
+                  fontFamily: "monospace",
+                }}
+              >
+                ADMIN-GUIDE.md
+              </code>{" "}
+              for instructions.
+            </p>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fill, minmax(min(100%, 22rem), 1fr))",
+              gap: "clamp(1rem, 2vw, 1.5rem)",
+            }}
+          >
+            {projectsData.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                priority={index < 2}
+              />
+            ))}
+          </div>
+        )}
       </section>
     </>
   );
@@ -101,7 +144,7 @@ function ProjectCard({
         background: "oklch(16% 0.006 270)",
         border: "1px solid oklch(24% 0.008 270)",
         textDecoration: "none",
-        // CSS custom property trick for hover вЂ” use a wrapper div instead
+        // CSS custom property trick for hover — use a wrapper div instead
       }}
       className="project-card"
     >
@@ -202,4 +245,3 @@ function ProjectCard({
     </Link>
   );
 }
-

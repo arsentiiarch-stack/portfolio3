@@ -41,6 +41,7 @@ export default function ProjectPage({ params }: Props) {
       >
         <Link
           href="/"
+          className="back-link"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -52,19 +53,17 @@ export default function ProjectPage({ params }: Props) {
             textDecoration: "none",
             transition: "color 180ms ease",
           }}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color =
-              "oklch(97% 0.004 270)")
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color =
-              "oklch(48% 0.008 270)")
-          }
           aria-label="Back to all projects"
         >
           ← All work
         </Link>
       </div>
+
+      <style jsx>{`
+        .back-link:hover {
+          color: oklch(97% 0.004 270);
+        }
+      `}</style>
 
       {/* Header */}
       <header
@@ -204,6 +203,7 @@ function NextProjectNav({ currentId }: { currentId: string }) {
       </p>
       <Link
         href={`/work/${next.id}`}
+        className="next-link"
         style={{
           fontFamily: "var(--font-syne)",
           fontWeight: 600,
@@ -213,15 +213,14 @@ function NextProjectNav({ currentId }: { currentId: string }) {
           transition: "opacity 180ms ease",
           display: "inline-block",
         }}
-        onMouseEnter={(e) =>
-          ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.6")
-        }
-        onMouseLeave={(e) =>
-          ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")
-        }
       >
         {next.title} →
       </Link>
+      <style jsx>{`
+        .next-link:hover {
+          opacity: 0.6;
+        }
+      `}</style>
     </div>
   );
 }
