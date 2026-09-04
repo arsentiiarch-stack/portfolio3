@@ -182,11 +182,6 @@ export default function AboutPage() {
         >
           Get in touch →
         </Link>
-        <style jsx>{`
-          .cta-link:hover {
-            opacity: 0.6;
-          }
-        `}</style>
       </div>
     </main>
   );

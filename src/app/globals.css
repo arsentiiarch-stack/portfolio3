@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.cta-link:hover {
+  opacity: 0.6;
+}
+
 @layer base {
   :root {
     --color-surface-base:   oklch(12% 0.005 270);
