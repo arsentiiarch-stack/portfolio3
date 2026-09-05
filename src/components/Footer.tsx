@@ -66,7 +66,11 @@ export default function Footer() {
                 {...(external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="footer-link"
+                style={{
+                  fontSize: "0.8125rem",
+                  letterSpacing: "0.06em",
+                  color: "oklch(58% 0.008 270)",
+                }}
               >
                 {label}
               </Link>
@@ -74,19 +78,6 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
-
-      <style>{`
-        .footer-link {
-          font-size: 0.8125rem;
-          letter-spacing: 0.06em;
-          color: oklch(58% 0.008 270);
-          text-decoration: none;
-          transition: color 180ms ease;
-        }
-        .footer-link:hover {
-          color: oklch(97% 0.004 270);
-        }
-      `}</style>
     </footer>
   );
 }

@@ -1,19 +1,27 @@
-# Placeholder for project images
+# Project Images
 
-This folder is where you place your render images.
-
-## Structure
+Place your project images here in subfolders:
 
 ```
-public/
-└── projects/
-    ├── project-01/
-    │   ├── cover.jpg
-    │   ├── 01.jpg
-    │   └── 02.jpg
-    ├── project-02/
-    │   └── ...
-    └── ...
+public/projects/
+  project-01/
+    cover.jpg
+    image-01.jpg
+    image-02.jpg
+  project-02/
+    cover.jpg
+    ...
 ```
 
-Each project folder name must match the `id` field in `src/data/projects.json`.
+Then reference them in `src/data/projects.json`:
+
+```json
+{
+  "id": "project-01",
+  "cover": "/projects/project-01/cover.jpg",
+  "images": [
+    "/projects/project-01/image-01.jpg",
+    "/projects/project-01/image-02.jpg"
+  ]
+}
+```

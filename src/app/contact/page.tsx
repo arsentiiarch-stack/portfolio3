@@ -90,7 +90,6 @@ export default function ContactPage() {
                 justifyContent: "space-between",
                 gap: "1rem",
                 padding: "1.5rem 0",
-                textDecoration: "none",
               }}
               aria-label={`${label}: ${value}`}
             >

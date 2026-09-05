@@ -24,9 +24,10 @@ export default function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   const idx = projectsData.findIndex((p) => p.id === params.id);
-  const next = projectsData.length > 1
-    ? projectsData[(idx + 1) % projectsData.length]
-    : null;
+  const next =
+    projectsData.length > 1
+      ? projectsData[(idx + 1) % projectsData.length]
+      : null;
 
   return (
     <article style={{ paddingTop: "6rem" }}>
@@ -38,7 +39,18 @@ export default function ProjectPage({ params }: Props) {
           margin: "0 auto",
         }}
       >
-        <Link href="/" className="back-link">
+        <Link
+          href="/"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.4rem",
+            fontSize: "0.8125rem",
+            letterSpacing: "0.07em",
+            textTransform: "uppercase",
+            color: "oklch(48% 0.008 270)",
+          }}
+        >
           ← All work
         </Link>
       </div>
@@ -167,40 +179,20 @@ export default function ProjectPage({ params }: Props) {
           >
             Next project
           </p>
-          <Link href={`/work/${next.id}`} className="next-project-link">
+          <Link
+            href={`/work/${next.id}`}
+            style={{
+              fontFamily: "var(--font-syne)",
+              fontWeight: 600,
+              fontSize: "clamp(1.25rem, 3vw, 2rem)",
+              color: "oklch(97% 0.004 270)",
+              display: "inline-block",
+            }}
+          >
             {next.title} →
           </Link>
         </div>
       )}
-
-      <style>{`
-        .back-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          font-size: 0.8125rem;
-          letter-spacing: 0.07em;
-          text-transform: uppercase;
-          color: oklch(48% 0.008 270);
-          text-decoration: none;
-          transition: color 180ms ease;
-        }
-        .back-link:hover {
-          color: oklch(97% 0.004 270);
-        }
-        .next-project-link {
-          font-family: var(--font-syne);
-          font-weight: 600;
-          font-size: clamp(1.25rem, 3vw, 2rem);
-          color: oklch(97% 0.004 270);
-          text-decoration: none;
-          transition: opacity 180ms ease;
-          display: inline-block;
-        }
-        .next-project-link:hover {
-          opacity: 0.6;
-        }
-      `}</style>
     </article>
   );
 }

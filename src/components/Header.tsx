@@ -31,7 +31,11 @@ export default function Header() {
       <Link
         href="/"
         aria-label="KOHO Visual — Home"
-        style={{ display: "flex", alignItems: "center", gap: "0.625rem", textDecoration: "none" }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.625rem",
+        }}
       >
         <span
           aria-hidden="true"
@@ -42,7 +46,8 @@ export default function Header() {
             width: "2rem",
             height: "2rem",
             borderRadius: "50%",
-            background: "linear-gradient(135deg, oklch(73% 0.18 65), oklch(52% 0.22 25), oklch(45% 0.22 305))",
+            background:
+              "linear-gradient(135deg, oklch(73% 0.18 65), oklch(52% 0.22 25), oklch(45% 0.22 305))",
             padding: "2px",
           }}
         >
@@ -80,24 +85,34 @@ export default function Header() {
       </Link>
 
       <nav aria-label="Main navigation">
-        <ul style={{ display: "flex", gap: "2rem", listStyle: "none", margin: 0, padding: 0 }}>
+        <ul
+          style={{
+            display: "flex",
+            gap: "2rem",
+            listStyle: "none",
+            margin: 0,
+            padding: 0,
+          }}
+        >
           {navLinks.map(({ href, label }) => {
             const active = pathname === href;
             return (
               <li key={href}>
                 <Link
                   href={href}
-                  className={active ? "nav-link nav-link--active" : "nav-link"}
+                  className="nav-link"
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontSize: "0.8125rem",
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
-                    color: active ? "oklch(97% 0.004 270)" : "oklch(58% 0.008 270)",
-                    textDecoration: "none",
-                    transition: "color 180ms ease",
+                    color: active
+                      ? "oklch(97% 0.004 270)"
+                      : "oklch(58% 0.008 270)",
                     paddingBottom: "2px",
-                    borderBottom: active ? "1px solid oklch(73% 0.18 65)" : "1px solid transparent",
+                    borderBottom: active
+                      ? "1px solid oklch(73% 0.18 65)"
+                      : "1px solid transparent",
                   }}
                 >
                   {label}
@@ -107,10 +122,6 @@ export default function Header() {
           })}
         </ul>
       </nav>
-
-      <style>{`
-        .nav-link:hover { color: oklch(97% 0.004 270) !important; }
-      `}</style>
     </header>
   );
 }

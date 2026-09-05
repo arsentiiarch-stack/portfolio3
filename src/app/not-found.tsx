@@ -40,21 +40,18 @@ export default function NotFound() {
       >
         This page doesn&apos;t exist or has been moved.
       </p>
-      <Link href="/" className="notfound-link">
+      <Link
+        href="/"
+        style={{
+          fontFamily: "var(--font-syne)",
+          fontWeight: 600,
+          fontSize: "0.9375rem",
+          letterSpacing: "0.06em",
+          color: "oklch(97% 0.004 270)",
+        }}
+      >
         ← Back to work
       </Link>
-      <style>{`
-        .notfound-link {
-          font-family: var(--font-syne);
-          font-weight: 600;
-          font-size: 0.9375rem;
-          letter-spacing: 0.06em;
-          color: oklch(97% 0.004 270);
-          text-decoration: none;
-          transition: opacity 180ms ease;
-        }
-        .notfound-link:hover { opacity: 0.6; }
-      `}</style>
     </main>
   );
 }
