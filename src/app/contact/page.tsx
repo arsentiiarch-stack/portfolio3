@@ -66,24 +66,65 @@ export default function ContactPage() {
         </span>
       </h1>
 
-      <ul role="list" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+      <ul
+        role="list"
+        style={{ listStyle: "none", margin: 0, padding: 0 }}
+      >
         {contacts.map(({ label, value, href, external }, i) => (
           <li
             key={label}
             style={{
-              borderTop: i === 0 ? "1px solid oklch(24% 0.008 270)" : undefined,
+              borderTop:
+                i === 0 ? "1px solid oklch(24% 0.008 270)" : undefined,
               borderBottom: "1px solid oklch(24% 0.008 270)",
             }}
           >
             <Link
               href={href}
-              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="contact-row"
+              {...(external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "1rem",
+                padding: "1.5rem 0",
+                textDecoration: "none",
+              }}
               aria-label={`${label}: ${value}`}
             >
-              <span className="contact-label">{label}</span>
-              <span className="contact-value">{value}</span>
-              <span aria-hidden="true" className="contact-arrow">↗</span>
+              <span
+                style={{
+                  fontSize: "0.75rem",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "oklch(48% 0.008 270)",
+                  minWidth: "6rem",
+                }}
+              >
+                {label}
+              </span>
+              <span
+                style={{
+                  fontFamily: "var(--font-syne)",
+                  fontWeight: 500,
+                  fontSize: "clamp(1rem, 2vw, 1.375rem)",
+                  color: "oklch(97% 0.004 270)",
+                  flex: 1,
+                }}
+              >
+                {value}
+              </span>
+              <span
+                aria-hidden="true"
+                style={{
+                  fontSize: "1.125rem",
+                  color: "oklch(48% 0.008 270)",
+                }}
+              >
+                ↗
+              </span>
             </Link>
           </li>
         ))}
@@ -102,37 +143,6 @@ export default function ContactPage() {
         feel free to share reference images or a brief description of your
         vision.
       </p>
-
-      <style>{`
-        .contact-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          padding: 1.5rem 0;
-          text-decoration: none;
-          transition: opacity 180ms ease;
-        }
-        .contact-row:hover { opacity: 0.6; }
-        .contact-label {
-          font-size: 0.75rem;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: oklch(48% 0.008 270);
-          min-width: 6rem;
-        }
-        .contact-value {
-          font-family: var(--font-syne);
-          font-weight: 500;
-          font-size: clamp(1rem, 2vw, 1.375rem);
-          color: oklch(97% 0.004 270);
-          flex: 1;
-        }
-        .contact-arrow {
-          font-size: 1.125rem;
-          color: oklch(48% 0.008 270);
-        }
-      `}</style>
     </main>
   );
 }
